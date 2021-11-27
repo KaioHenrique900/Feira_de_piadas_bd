@@ -1,7 +1,7 @@
 <?php
 
 // connecting to db
-$con = pg_connect(getenv("DATABASE_URL"));
+$con = pg_connect(getenv("feira-de-piadas.herokuapp.com"));
 
 // array for JSON response
 $response = array();
