@@ -1,8 +1,7 @@
 <?php
 
 // connecting to db
-$con = pg_connect(getenv("postgres://blodrftcfvyshh:0516abc94ad85d3b4e126ff67eae2e73022401049d2862f853034cd2e5e37c61@ec2-35-168-80-116.compute-1.amazonaws.com:5432/d3cnre2oc9uli5
-"));
+$con = pg_connect(getenv("DATABASE_URL"));
 
 // array for JSON response
 $response = array();
