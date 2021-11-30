@@ -49,4 +49,6 @@ else {
 
 pg_close($con);
 echo json_encode($response);
+
+echo 'oi'
 ?>
