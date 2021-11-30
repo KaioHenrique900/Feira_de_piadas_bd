@@ -1,7 +1,8 @@
 <?php
 
 // connecting to db
-$con = pg_connect(getenv("DATABASE_URL"));
+$con_string = "host=ec2-35-168-80-116.compute-1.amazonaws.com port=5432 dbname=d3cnre2oc9uli5 user=blodrftcfvyshh password=0516abc94ad85d3b4e126ff67eae2e73022401049d2862f853034cd2e5e37c61";
+$con = pg_connect($con_string);
 
 // array for JSON response
 $response = array();
