@@ -13,11 +13,11 @@ $con = pg_connect($con_string);
 $response = array();
  
 // check for required fields
-if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['newName']) && isset($_POST['newDate'])) {
+if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['newUser']) && isset($_POST['newDate'])) {
  
 	$newLogin = trim($_POST['newLogin']);
 	$newPassword = trim($_POST['newPassword']);
-	$newName = trim($_POST['newName']);
+	$newUser = trim($_POST['newUser']);
 	$newDate = trim($_POST['newDate']);
 		
 	$usuario_existe = pg_query($con, "SELECT login FROM usuario WHERE email='$newLogin'");
@@ -28,7 +28,7 @@ if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['n
 	}
 	else {
 		// mysql inserting a new row
-		$result = pg_query($con, "INSERT INTO usuario(email, senha, nome, data_nasc) VALUES('$newLogin', '$newPassword', '$newName', '$newDate')");
+		$result = pg_query($con, "INSERT INTO usuario(email, senha, nome, data_nasc) VALUES('$newLogin', '$newPassword', '$newUser', '$newDate')");
 	 
 		if ($result) {
 			$response["success"] = 1;
