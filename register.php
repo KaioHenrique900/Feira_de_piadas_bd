@@ -27,7 +27,7 @@ if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['n
 	}
 	else {
 		// mysql inserting a new row
-		$result = pg_query($con, "INSERT INTO usuario(email, senha, nome) VALUES('$newLogin', '$newPassword', '$newUser')");
+		$result = pg_query($con, "INSERT INTO usuario(email, senha, nome, data_nasc) VALUES('$newLogin', '$newPassword', '$newUser', '2000-01-09')");
 	 
 		if ($result) {
 			$response["success"] = 1;
