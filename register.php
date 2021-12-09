@@ -15,17 +15,13 @@ $response = array();
 $newLogin = NULL;
 $newPassword = NULL;
 $newUser = NULL;
-
-echo $_GET['userUp'];
-echo $_GET['senhaUp'];
-echo $_GET['emailUp'];
  
 // check for required fields
-if (isset($_GET['userUp']) && isset($_GET['senhaUp']) && isset($_GET['emailUp'])) {
+if (isset($_POST['userUp']) && isset($_POST['senhaUp']) && isset($_POST['emailUp'])) {
  	echo "foi";
-	$newLogin = trim($_GET['userUp']);
-	$newPassword = trim($_GET['senhaUp']);
-	$newUser = trim($_GET['emailUp']);
+	$newLogin = trim($_POST['userUp']);
+	$newPassword = trim($_POST['senhaUp']);
+	$newUser = trim($_POST['emailUp']);
 		
 	$usuario_existe = pg_query($con, "SELECT email FROM usuario WHERE email='$newLogin'");
 	// check for empty result
