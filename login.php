@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // connecting to db
 $con_string = "host=ec2-35-168-80-116.compute-1.amazonaws.com port=5432 dbname=d3cnre2oc9uli5 user=blodrftcfvyshh password=0516abc94ad85d3b4e126ff67eae2e73022401049d2862f853034cd2e5e37c61";
 $con = pg_connect($con_string);
@@ -28,11 +28,11 @@ if(is_null($username)) {
 }
 // Se houve envio dos dados
 else {
-    $query = pg_query($con, "SELECT senha FROM usuario WHERE email='$username'");
-
+    $query = pg_query($con, "SELECT senha, email FROM usuario WHERE email='$username'");
 	if(pg_num_rows($query) > 0){
 		$row = pg_fetch_array($query);
 		if($password == $row['senha']){
+			$_SESSION['username'] = $row['email'];
 			$response["success"] = 1;
 		}
 		else {
@@ -51,5 +51,4 @@ else {
 pg_close($con);
 echo json_encode($response);
 
-echo 'oi'
 ?>
