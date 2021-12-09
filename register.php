@@ -16,16 +16,16 @@ $newLogin = NULL;
 $newPassword = NULL;
 $newUser = NULL;
 
-echo $_POST['newLogin'];
-echo $_POST['newPassword'];
-echo $_POST['newUser'];
+echo $_POST['userUp'];
+echo $_POST['senhaUp'];
+echo $_POST['emailUp'];
  
 // check for required fields
-if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['newUser'])) {
+if (isset($_POST['userUp']) && isset($_POST['senhaUp']) && isset($_POST['emailUp'])) {
  	echo "foi";
-	$newLogin = trim($_POST['newLogin']);
-	$newPassword = trim($_POST['newPassword']);
-	$newUser = trim($_POST['newUser']);
+	$newLogin = trim($_POST['userUp']);
+	$newPassword = trim($_POST['senhaUp']);
+	$newUser = trim($_POST['emailUp']);
 		
 	$usuario_existe = pg_query($con, "SELECT login FROM usuario WHERE email='$newLogin'");
 	// check for empty result
