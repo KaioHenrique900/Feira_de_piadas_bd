@@ -14,7 +14,7 @@ $response = array();
  
 // check for required fields
 if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['newUser'])) {
- 
+ 	echo "foi";
 	$newLogin = trim($_POST['newLogin']);
 	$newPassword = trim($_POST['newPassword']);
 	$newUser = trim($_POST['newUser']);
