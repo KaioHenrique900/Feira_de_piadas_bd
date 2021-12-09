@@ -27,7 +27,7 @@ if (isset($_POST['userUp']) && isset($_POST['senhaUp']) && isset($_POST['emailUp
 	$newPassword = trim($_POST['senhaUp']);
 	$newUser = trim($_POST['emailUp']);
 		
-	$usuario_existe = pg_query($con, "SELECT login FROM usuario WHERE email='$newLogin'");
+	$usuario_existe = pg_query($con, "SELECT email FROM usuario WHERE email='$newLogin'");
 	// check for empty result
 	if (pg_num_rows($usuario_existe) > 0) {
 		$response["success"] = 0;
