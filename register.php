@@ -11,6 +11,14 @@ $con = pg_connect($con_string);
  
 // array for JSON response
 $response = array();
+
+$newLogin = NULL;
+$newPassword = NULL;
+$newUser = NULL;
+
+echo $_POST['newLogin'];
+echo $_POST['newPassword'];
+echo $_POST['newUser'];
  
 // check for required fields
 if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['newUser'])) {
