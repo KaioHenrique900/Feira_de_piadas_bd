@@ -15,7 +15,7 @@ if (isset($_POST['userUp']) && isset($_POST['senhaUp']) && isset($_POST['emailUp
 		
 	$usuario_existe = pg_query($con, "SELECT email FROM usuario WHERE email='$newLogin'");
 	// check for empty result
-	if (pg_num_rows($usuario_existe) > 0) {
+	if (pg_num_rows($con, $usuario_existe) > 0) {
 		$response["success"] = 0;
 		$response["error"] = "Usuario ja cadastrado";
 	}
