@@ -1,10 +1,5 @@
 <?php
  
-/*
- * Following code will create a new product row
- * All product details are read from HTTP Post Request
- */
- 
 // connecting to db
 $con_string = "host=ec2-35-168-80-116.compute-1.amazonaws.com port=5432 dbname=d3cnre2oc9uli5 user=blodrftcfvyshh password=0516abc94ad85d3b4e126ff67eae2e73022401049d2862f853034cd2e5e37c61";
 $con = pg_connect($con_string);
@@ -14,10 +9,9 @@ $response = array();
  
 // check for required fields
 if (isset($_POST['userUp']) && isset($_POST['senhaUp']) && isset($_POST['emailUp'])) {
- 	echo "foi";
-	$newLogin = trim($_POST['userUp']);
+	$newLogin = trim($_POST['emailUp']);
 	$newPassword = trim($_POST['senhaUp']);
-	$newUser = trim($_POST['emailUp']);
+	$newUser = trim($_POST['userUp']);
 		
 	$usuario_existe = pg_query($con, "SELECT email FROM usuario WHERE email='$newLogin'");
 	// check for empty result
@@ -31,6 +25,7 @@ if (isset($_POST['userUp']) && isset($_POST['senhaUp']) && isset($_POST['emailUp
 	 
 		if ($result) {
 			$response["success"] = 1;
+			echo "foi";
 		}
 		else {
 			$response["success"] = 0;
