@@ -39,7 +39,7 @@ if($isAuth) {
 	$response["success"] = 1;
 	
 	// codigo sql da sua consulta
-	$response["data"] = 'oi';
+	$response["data"] = $_SESSION['username'];
 }
 else {
 	$response["success"] = 0;
