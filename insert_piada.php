@@ -29,7 +29,7 @@ if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['
 		$rowCategoria = pg_fetch_array($query_idCategoria);
 		$idCategoria = $rowCategoria['id_categoria'];
 
-		$query_possui = pg_query($con, "INSERT INTO possui(fk_piada_id_piada, fk_categoria_id_categoria) VALUES($idPiada, $idCategoria");
+		$query_possui = pg_query($con, "INSERT INTO possui(fk_piada_id_piada, fk_categoria_id_categoria) VALUES($idPiada, $idCategoria)");
 
 		if($query_possui){
 			$response["success"] = 1;
