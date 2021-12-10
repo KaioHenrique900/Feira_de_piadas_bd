@@ -15,6 +15,7 @@ if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['
 	$id_usuario = 2;  //código a ser feito
 
 	$dataAtual = new DateTime('now');
+	$dataAtual = $dataAtual->format('Y-m-d H:i:s');
 
 	$result = pg_query($con, "INSERT INTO piada(titulo, descricao, data_publicacao, fk_id_usuario) VALUES('$tituloPiada', '$conteudoPiada', '$dataAtual', $id_usuario)");
 	 
