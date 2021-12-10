@@ -8,7 +8,7 @@ $con = pg_connect($con_string);
 // array for JSON response
 $response = array();
 
-if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['conteudoPiada']){
+if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['conteudoPiada'])){
 	$tituloPiada = trim($_POST['tituloPiada']);
 	$categoria = trim($_POST['categoria']);
 	$conteudoPiada = trim($_POST['conteudoPiada']);
