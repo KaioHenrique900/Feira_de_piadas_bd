@@ -26,10 +26,9 @@ elseif(isset( $_SERVER['HTTP_AUTHORIZATION'])) {
 // Se a autenticação não foi enviada
 if(!is_null($username)){
     $query = pg_query($con, "SELECT senha, email FROM usuario WHERE email='$username'");
-
+    $response["data"] = $username;
 	if(pg_num_rows($query) > 0){
 		$row = pg_fetch_array($query);
-		$response["data"] = $row['email'];
 		if($password == $row['senha']){
 			$isAuth = true;
 		}
