@@ -11,7 +11,7 @@ $con = pg_connect($con_string);
 $username = NULL;
 $password = NULL;
 
-$isAuth = false;
+$isAuth = true;
 
 // Método para mod_php (Apache)
 if(isset( $_SERVER['PHP_AUTH_USER'])) {
@@ -29,7 +29,7 @@ if(!is_null($username)){
 
 	if(pg_num_rows($query) > 0){
 		$row = pg_fetch_array($query);
-		if($password == $row[""]){
+		if($password == $row['senha']){
 			$isAuth = true;
 		}
 	}
