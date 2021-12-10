@@ -29,8 +29,7 @@ if(!is_null($username)){
 
 	if(pg_num_rows($query) > 0){
 		$row = pg_fetch_array($query);
-		$response["data"] = 'oi';
-		if($password == $row['senha']){
+		if($password == $row[""]){
 			$isAuth = true;
 		}
 	}
