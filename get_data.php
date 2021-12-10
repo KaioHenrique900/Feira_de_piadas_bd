@@ -28,7 +28,10 @@ if(!is_null($username)){
     $query = pg_query($con, "SELECT senha FROM usuario WHERE email='$username'");
 
 	if(pg_num_rows($query) > 0){
+		$row = pg_fetch_array($query);
+		if($password == "$row['senha']"){
 			$isAuth = true;
+		}
 	}
 }
  
@@ -36,7 +39,7 @@ if($isAuth) {
 	$response["success"] = 1;
 	
 	// codigo sql da sua consulta
-	$response["data"] = $_SESSION['username'];
+	$response["data"] = 'oi';
 }
 else {
 	$response["success"] = 0;
