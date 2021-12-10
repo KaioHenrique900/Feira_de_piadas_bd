@@ -28,10 +28,7 @@ if(!is_null($username)){
     $query = pg_query($con, "SELECT senha FROM usuario WHERE email='$username'");
 
 	if(pg_num_rows($query) > 0){
-		$row = pg_fetch_array($query);
-		if($password == ""){
 			$isAuth = true;
-		}
 	}
 }
  
