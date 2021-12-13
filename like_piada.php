@@ -28,8 +28,8 @@ if(is_null($username)) {
 
 	$titlePiada = trim($_POST['titlePiada']);
 	$username = trim($_POST['email']);
-	$query_userId($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
-	$query_piadaId($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
+	$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
+	$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
 
 	$userId = pg_fetch_array($query)['id_usuario'];
 	$piadaId = pg_fetch_array($query)['id_piada'];
