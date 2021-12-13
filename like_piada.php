@@ -26,7 +26,7 @@ if(is_null($username)) {
 }
 // Se houve envio dos dados
 else {
-	$titlePiada = trim($_GET['titlePiada']);
+	$titlePiada = trim($_POST['titlePiada']);
 	$query_userId($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
 	$query_piadaId($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
 
