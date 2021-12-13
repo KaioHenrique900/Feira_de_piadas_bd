@@ -26,9 +26,14 @@ if(is_null($username)) {
 }
 // Se houve envio dos dados
 else {
+	$titlePiada = trim($_GET['titlePiada']);
 	$query_userId($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
-	//$query_piadaId($con, "SELECT id_piada FROM piada WHERE email = '$username'");
-    $query = pg_query($con, "INSERT INTO curte(fk_usuario_id_usuario, fk_piada_id_piada) VALUES($userId, 1)");
+	$query_piadaId($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
+
+	$userId = pg_fetch_array($query)['id_usuario'];
+	$piadaId = pg_fetch_array($query)['id_piada'];
+
+    $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, 1)");
 	
 }
 
