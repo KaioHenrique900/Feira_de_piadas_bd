@@ -9,7 +9,7 @@ $response = array();
 
 $username = NULL;
 
-// Método para mod_php (Apache)
+/* Método para mod_php (Apache)
 if (isset( $_SERVER['PHP_AUTH_USER'] ) ) {
     $username = $_SERVER['PHP_AUTH_USER'];
 }
@@ -24,9 +24,10 @@ if(is_null($username)) {
     $response["success"] = 0;
 	$response["error"] = "faltam parametros";
 }
-// Se houve envio dos dados
-else {
+// Se houve envio dos dados*/
+
 	$titlePiada = trim($_POST['titlePiada']);
+	$username = trim($_POST['email']);
 	$query_userId($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
 	$query_piadaId($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
 
@@ -35,7 +36,7 @@ else {
 
     $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, 1)");
 	
-}
+
 
 pg_close($con);
 echo json_encode($response);
