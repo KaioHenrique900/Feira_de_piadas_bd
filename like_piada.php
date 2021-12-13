@@ -31,8 +31,8 @@ if(is_null($username)) {
 	$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
 	$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
 
-	$userId = pg_fetch_array($query)['id_usuario'];
-	$piadaId = pg_fetch_array($query)['id_piada'];
+	$userId = pg_fetch_array($query_userId)['id_usuario'];
+	$piadaId = pg_fetch_array($query_piadaId)['id_piada'];
 
     $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, 1)");
 	
