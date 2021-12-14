@@ -15,16 +15,12 @@ $isAuth = false;
 
 if(isset( $_POST['email'])) {
     $username = $_POST['email'];
-    $password = $_POST['senha'];
 }
 
 if(!is_null($username)){
-    $query = pg_query($con, "SELECT senha, email FROM usuario WHERE email='$username'");
+    $query = pg_query($con, "SELECT email FROM usuario WHERE email='$username'");
 	if(pg_num_rows($query) > 0){
-		$row = pg_fetch_array($query);
-		if($password == $row['senha']){
-			$isAuth = true;
-		}
+		$isAuth = true;
 	}
 }
  
