@@ -13,9 +13,9 @@ $password = NULL;
 
 $isAuth = false;
 
-if(isset( $_POST['email'])) {
-    $username = $_POST['email'];
-    $password = $_POST['senha'];
+if(isset( $_GET['email'])) {
+    $username = $_GET['email'];
+    $password = $_GET['senha'];
 }
 
 if(!is_null($username)){
