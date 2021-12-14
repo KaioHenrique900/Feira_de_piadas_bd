@@ -31,12 +31,12 @@ if(is_null($username)) {
 	$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
 
 	$userArray = pg_fetch_array($query_userId);
-	$piadaArray = pg_fetch_array($query_pidaId);
+	$piadaArray = pg_fetch_array($query_piadaId);
 
 	$userId = $userArray['id_usuario'];
 	$piadaId =$piadaArray['id_piada'];
 
-    $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, 1)");
+    $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, $piadaId)");
 	
 
 
