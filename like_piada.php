@@ -36,7 +36,9 @@ if(is_null($username)) {
 	$userId = $userArray['id_usuario'];
 	$piadaId =$piadaArray['id_piada'];
 
-    $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES(1, 2)");
+    $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, $piadaId)");
+
+    $response["success"]=1;
 	
 
 
