@@ -10,7 +10,6 @@ $con = pg_connect($con_string);
 
 $isAuth = false;
 
-if(isset($_POST['email'])) {
     $username = $_POST['email'];
     $query = pg_query($con, "SELECT email, nome FROM usuario WHERE email='$username'");
 	if(pg_num_rows($query) > 0){
@@ -18,7 +17,7 @@ if(isset($_POST['email'])) {
 		$isAuth = true;
 		$nome=$row['nome'];
 	}
-}
+
  
 if($isAuth) {
 	$response["success"] = 1;
