@@ -7,6 +7,7 @@ $con = pg_connect($con_string);
 // array for JSON response
 $response = array();
 
+/*
 $username=NULL;
 //Método para mod_php (Apache)
 if (isset( $_SERVER['PHP_AUTH_USER'] ) ) {
@@ -22,34 +23,30 @@ elseif(isset( $_SERVER['HTTP_AUTHORIZATION'])) {
 if(is_null($username)) {
     $response["success"] = 0;
 	$response["error"] = "faltam parametros";
-}
+}*/
 
-else{
+
 	if(isset($_POST['titlePiada'])){
-	$titlePiada = trim($_POST['titlePiada']);
-	$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
-	$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
+		$username = $_SESSION['username'];
+		$titlePiada = trim($_POST['titlePiada']);
+		$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
+		$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
 
-	$userArray = pg_fetch_array($query_userId);
-	$piadaArray = pg_fetch_array($query_piadaId);
+		$userArray = pg_fetch_array($query_userId);
+		$piadaArray = pg_fetch_array($query_piadaId);
 
-	$userId = $userArray['id_usuario'];
-	$piadaId =$piadaArray['id_piada'];
+		$userId = $userArray['id_usuario'];
+		$piadaId =$piadaArray['id_piada'];
 
-    $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, $piadaId)");
+	    $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, $piadaId)");
 
-    $response["success"]=1;
-}
+	    $response["success"]=1;
+	}
 
 else{
 	$response["success"]=0;
 	$response["error"]="Algo deu errado";
 }
-}
-// Se houve envio dos dados
-
-	
-	
 
 
 pg_close($con);
