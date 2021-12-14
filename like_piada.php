@@ -24,7 +24,7 @@ if(is_null($username)) {
 	$response["error"] = "faltam parametros";
 }
 // Se houve envio dos dados*/
-if(isset($_POST['titlePiada']) && isset($_SERVER['PHP_AUTH_USER']){
+if(isset($_POST['titlePiada']) && isset($_SERVER['PHP_AUTH_USER'])){
 	$titlePiada = trim($_POST['titlePiada']);
 	$username = trim($_SERVER['PHP_AUTH_USER']);
 	$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
