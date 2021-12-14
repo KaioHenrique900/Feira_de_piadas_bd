@@ -40,6 +40,11 @@ if(isset($_POST['titlePiada']) && isset($_SERVER['PHP_AUTH_USER'])){
 
     $response["success"]=1;
 }
+
+else{
+	$response["success"]=0;
+	$response["error"]="Algo deu errado";
+}
 	
 	
 
