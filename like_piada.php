@@ -7,8 +7,8 @@ $con = pg_connect($con_string);
 // array for JSON response
 $response = array();
 
-
-/* Método para mod_php (Apache)
+$username=NULL;
+//Método para mod_php (Apache)
 if (isset( $_SERVER['PHP_AUTH_USER'] ) ) {
     $username = $_SERVER['PHP_AUTH_USER'];
 }
@@ -23,10 +23,10 @@ if(is_null($username)) {
     $response["success"] = 0;
 	$response["error"] = "faltam parametros";
 }
-// Se houve envio dos dados*/
-if(isset($_POST['titlePiada']) && isset($_SERVER['PHP_AUTH_USER'])){
+
+else{
+	if(isset($_POST['titlePiada'])){
 	$titlePiada = trim($_POST['titlePiada']);
-	$username = trim($_SERVER['PHP_AUTH_USER']);
 	$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
 	$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
 
@@ -45,6 +45,9 @@ else{
 	$response["success"]=0;
 	$response["error"]="Algo deu errado";
 }
+}
+// Se houve envio dos dados
+
 	
 	
 
