@@ -24,9 +24,9 @@ if(is_null($username)) {
 	$response["error"] = "faltam parametros";
 }
 // Se houve envio dos dados*/
-
+if(isset($_POST['titlePiada']) && isset($_SERVER['PHP_AUTH_USER']){
 	$titlePiada = trim($_POST['titlePiada']);
-	$username = trim($_POST['email']);
+	$username = trim($_SERVER['PHP_AUTH_USER']);
 	$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
 	$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
 
@@ -39,6 +39,8 @@ if(is_null($username)) {
     $query = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, $piadaId)");
 
     $response["success"]=1;
+}
+	
 	
 
 
