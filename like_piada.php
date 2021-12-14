@@ -27,7 +27,7 @@ if(is_null($username)) {
 
 
 	if(isset($_POST['titlePiada'])){
-		$username = trim($_POST['email'])
+		$username = trim($_POST['email']);
 		$titlePiada = trim($_POST['titlePiada']);
 		$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
 		$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
