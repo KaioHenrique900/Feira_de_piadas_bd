@@ -13,16 +13,11 @@ $password = NULL;
 
 $isAuth = false;
 
-// Método para mod_php (Apache)
-if(isset( $_SERVER['PHP_AUTH_USER'])) {
-    $username = $_SERVER['PHP_AUTH_USER'];
-    $password = $_SERVER['PHP_AUTH_PW'];
-} // Método para demais servers
-elseif(isset( $_SERVER['HTTP_AUTHORIZATION'])) {
-    if(preg_match( '/^basic/i', $_SERVER['HTTP_AUTHORIZATION']))
-		list($username, $password) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+if(isset( $_POST['email'])) {
+    $username = $_POST['email'];
+    $password = $_POST['senha'];
 }
-// Se a autenticação não foi enviada
+
 if(!is_null($username)){
     $query = pg_query($con, "SELECT senha, email FROM usuario WHERE email='$username'");
 	if(pg_num_rows($query) > 0){
