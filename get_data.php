@@ -10,6 +10,8 @@ $con = pg_connect($con_string);
 
 $isAuth = false;
 
+getUserName();
+
 function getUserName(){
 	if(isset($_POST['email'])) {
 	    $username = trim($_POST['email']);
