@@ -31,10 +31,11 @@ function getUserName(){
 		$response["success"] = 0;
 		$response["error"] = "falha de autenticação";
 	}
+
+	pg_close($con);
+	echo json_encode($response);
 }
 
 getUserName();
 
-pg_close($con);
-echo json_encode($response);
 ?>
