@@ -10,25 +10,27 @@ $con = pg_connect($con_string);
 
 $isAuth = false;
 
-if(isset($_POST['email'])) {
-    $username = trim($_POST['email']);
-    $query = pg_query($con, "SELECT email, nome FROM usuario WHERE email='$username'");
-	if(pg_num_rows($query) > 0){
-		$row = pg_fetch_array($query);
-		$isAuth = true;
-		$nome=$row['nome'];
+function getUserName(){
+	if(isset($_POST['email'])) {
+	    $username = trim($_POST['email']);
+	    $query = pg_query($con, "SELECT email, nome FROM usuario WHERE email='$username'");
+		if(pg_num_rows($query) > 0){
+			$row = pg_fetch_array($query);
+			$isAuth = true;
+			$nome=$row['nome'];
+		}
 	}
-}
- 
-if($isAuth) {
-	$response["success"] = 1;
-	
-	// codigo sql da sua consulta
-	$response["data"] = $nome;
-}
-else {
-	$response["success"] = 0;
-	$response["error"] = "falha de autenticação";
+	 
+	if($isAuth) {
+		$response["success"] = 1;
+		
+		// codigo sql da sua consulta
+		$response["data"] = $nome;
+	}
+	else {
+		$response["success"] = 0;
+		$response["error"] = "falha de autenticação";
+	}
 }
 
 pg_close($con);
