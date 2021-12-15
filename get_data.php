@@ -10,8 +10,6 @@ $con = pg_connect($con_string);
 
 $isAuth = false;
 
-getUserName();
-
 function getUserName(){
 	if(isset($_POST['email'])) {
 	    $username = trim($_POST['email']);
@@ -34,6 +32,8 @@ function getUserName(){
 		$response["error"] = "falha de autenticação";
 	}
 }
+
+getUserName();
 
 pg_close($con);
 echo json_encode($response);
