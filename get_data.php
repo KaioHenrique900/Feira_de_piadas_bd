@@ -42,23 +42,17 @@ function getPiadas(){
 	$con_string = "host=ec2-35-168-80-116.compute-1.amazonaws.com port=5432 dbname=d3cnre2oc9uli5 user=blodrftcfvyshh password=0516abc94ad85d3b4e126ff67eae2e73022401049d2862f853034cd2e5e37c61";
 	$con = pg_connect($con_string);
 
-	$queryPiadas = pg_query($con, "SELECT * FROM piada");
+	$queryPiadas = pg_query($con, "SELECT id_piada, descricao, data_publicacao, titulo FROM piada");
 
-	if (pg_num_rows($queryPiadas)){
+	if (pg_num_rows($queryPiadas)>0){
+		$response["success"] = 1;
 		$piadas = pg_fetch_array($queryPiadas);
-		foreach ($piadas as $piada) {
-			$id_piada = $piada['id_piada'];
-			$descricao = $piada['descricao'];
-			$data_publicacao = $piada['data_publicacao'];
-			$id_usuario = $piada['fk_id_usuario'];
-			$titulo = $piada['titulo'];
+		$response["piadas"] = $piadas;
+	}
 
-			$response["id_piada"] = $id_piada;
-			$response["descricao"] = $descricao;
-			$response["data_publicacao"] = $data_publicacao;
-			$response["fk_id_usuario"] = $id_usuario;
-			$response["titulo"] = $titulo;
-		}
+	else{
+		$response["success"] = 0;
+		$response["error"] = "Algo está errado";
 	}
 
 	pg_close($con);
@@ -66,5 +60,6 @@ function getPiadas(){
 }
 
 getUserName();
+getPiadas();
 
 ?>
