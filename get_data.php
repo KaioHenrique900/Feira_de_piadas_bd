@@ -47,6 +47,7 @@ function getPiadas(){
 	if (pg_num_rows($queryPiadas)>0){
 		$response["success"] = 1;
 		$piadas = pg_fetch_array($queryPiadas);
+		echo $piadas;
 		$response["piadas"] = $piadas;
 	}
 
