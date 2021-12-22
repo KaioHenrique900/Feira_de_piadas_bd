@@ -45,10 +45,18 @@ function getPiadas(){
 	$queryPiadas = pg_query($con, "SELECT id_piada, descricao, data_publicacao, titulo FROM piada");
 
 	if (pg_num_rows($queryPiadas)>0){
+		$response["piadas"] = array();
+ 
+	    while ($row = pg_fetch_array($queryPiadas)) {
+	        $piada = array();
+	        $piada["id_piada"] = $row["id_piada"];
+	        $piada["titulo"] = $row["titulo"];
+	        $piada["descricao"] = $row["descricao"];
+	        $piada["data_publicacao"] = $row["data_publicacao"];
+	 
+	        array_push($response["piadas"], $piada);
+	    }
 		$response["success"] = 1;
-		$piadas = pg_fetch_array($queryPiadas);
-		echo $piadas;
-		$response["piadas"] = $piadas;
 	}
 
 	else{
