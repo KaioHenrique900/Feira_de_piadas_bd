@@ -15,7 +15,7 @@ if (pg_num_rows($queryPiadas)>0){
         $piada["titulo"] = $row["titulo"];
         $piada["descricao"] = $row["descricao"];
         $piada["data_publicacao"] = $row["data_publicacao"];
-	 	$piada["nome_usuario"] = $row['u.nome'];
+	 	$piada["nome_usuario"] = $row['nome'];
 
         array_push($response["piadas"], $piada);
     }
