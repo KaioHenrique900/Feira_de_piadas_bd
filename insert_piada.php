@@ -12,7 +12,7 @@ if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['
 	$tituloPiada = trim($_POST['tituloPiada']);
 	$categoria = trim($_POST['categoria']);
 	$conteudoPiada = trim($_POST['conteudoPiada']);
-	$email = isset($_POST['email']);
+	$email = trim($_POST['email']);
 
 	$queryUser = pg_query($con, "SELECT id_usuario from usuario where email='$email'");
 	$rowUser = pg_fetch_array($queryUser);
