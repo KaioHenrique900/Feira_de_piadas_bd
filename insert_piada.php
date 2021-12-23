@@ -15,8 +15,14 @@ if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['
 	$email = isset($_POST['email']);
 
 	$queryUser = pg_query($con, "SELECT id_usuario from usuario where email='$email'");
-	$rowUser = pg_fetch_array($queryUser);
-	$id_usuario = $rowUser['id_usuario'];
+	if ($queryUser > 0) {
+		$rowUser = pg_fetch_array($queryUser);
+		$id_usuario = $rowUser['id_usuario'];
+	}
+	else{
+		$response["success"] = 0;
+		$response["error"] = "usuario não encontrado";
+	}
 
 	$dataAtual = new DateTime('now');
 	$dataAtual = $dataAtual->format('Y-m-d H:i:s');
