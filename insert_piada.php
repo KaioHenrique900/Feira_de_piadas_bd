@@ -8,11 +8,15 @@ $con = pg_connect($con_string);
 // array for JSON response
 $response = array();
 
-if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['conteudoPiada'])){
+if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['conteudoPiada']) && isset($_POST['email'])){
 	$tituloPiada = trim($_POST['tituloPiada']);
 	$categoria = trim($_POST['categoria']);
 	$conteudoPiada = trim($_POST['conteudoPiada']);
-	$id_usuario = 2;  //código a ser feito
+	$email = isset($_POST['email']);
+
+	$queryUser = pg_query($con, "SELECT id_usuario from usuario where email='$email'");
+	$rowUser = pg_fetch_array($queryUser);
+	$id_usuario = $rowUser['id_usuario'];
 
 	$dataAtual = new DateTime('now');
 	$dataAtual = $dataAtual->format('Y-m-d H:i:s');
