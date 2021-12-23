@@ -11,11 +11,11 @@ if (pg_num_rows($queryPiadas)>0){
  
     while ($row = pg_fetch_array($queryPiadas)) {
         $piada = array();
-        $piada["id_piada"] = $row["p.id_piada"];
-        $piada["titulo"] = $row["p.titulo"];
-        $piada["descricao"] = $row["p.descricao"];
-        $piada["data_publicacao"] = $row["p.data_publicacao"];
-	 	$piada["nome_usuario"] = $row['u.nome'];
+        $piada["id_piada"] = $row["id_piada"];
+        $piada["titulo"] = $row["titulo"];
+        $piada["descricao"] = $row["descricao"];
+        $piada["data_publicacao"] = $row["data_publicacao"];
+	 	$piada["nome_usuario"] = $row['nome'];
 
         array_push($response["piadas"], $piada);
     }
