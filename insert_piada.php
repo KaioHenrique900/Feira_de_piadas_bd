@@ -15,19 +15,13 @@ if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['
 	$email = isset($_POST['email']);
 
 	$queryUser = pg_query($con, "SELECT id_usuario from usuario where email='$email'");
-	if ($queryUser > 0) {
-		$rowUser = pg_fetch_array($queryUser);
-		$id_usuario = $rowUser['id_usuario'];
-	}
-	else{
-		$response["success"] = 0;
-		$response["error"] = "usuario não encontrado";
-	}
+	$rowUser = pg_fetch_array($queryUser);
+	$id_usuario = $rowUser['id_usuario'];
 
 	$dataAtual = new DateTime('now');
 	$dataAtual = $dataAtual->format('Y-m-d H:i:s');
 
-	$result = pg_query($con, "INSERT INTO piada(titulo, descricao, data_publicacao, fk_id_usuario) VALUES('$tituloPiada', '$conteudoPiada', '$dataAtual', $id_usuario)");
+	$result = pg_query($con, "INSERT INTO piada(titulo, descricao, data_publicacao, fk_id_usuario) VALUES('$tituloPiada', '$conteudoPiada', '$dataAtual', '$id_usuario')");
 	 
 	if ($result) {
 
