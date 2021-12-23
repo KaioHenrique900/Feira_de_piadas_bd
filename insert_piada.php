@@ -21,7 +21,7 @@ if (isset($_POST['tituloPiada']) && isset($_POST['categoria']) && isset($_POST['
 	$dataAtual = new DateTime('now');
 	$dataAtual = $dataAtual->format('Y-m-d H:i:s');
 
-	$result = pg_query($con, "INSERT INTO piada(titulo, descricao, data_publicacao, fk_id_usuario) VALUES('$tituloPiada', '$conteudoPiada', '$dataAtual', '$id_usuario')");
+	$result = pg_query($con, "INSERT INTO piada(titulo, descricao, data_publicacao, fk_id_usuario) VALUES('$tituloPiada', '$conteudoPiada', '$dataAtual', $id_usuario)");
 	 
 	if ($result) {
 
