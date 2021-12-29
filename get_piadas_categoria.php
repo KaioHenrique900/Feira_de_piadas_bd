@@ -16,6 +16,30 @@ if (pg_num_rows($queryCategoria)>0){
     $queryPossui = pg_query($con, "SELECT fk_piada_id_piada from possui where fk_categoria_id_categoria=$id_categoria");
 
     if(pg_num_rows($queryPossui)>0){
+        $response["piadas"] = array();
+
+        while ($row = pg_fetch_array($queryPossui)) {
+            $id_piada = $queryPossui['fk_piada_id_piada'];
+
+            $queryPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, u.nome FROM piada as p join usuario as u on p.id_piada=$id_piada and p.fk_id_usuario = u.id_usuario");
+
+            if (pg_num_rows($queryPiadas)>0){
+         
+                    $piada = array();
+                    $piada["id_piada"] = $row["id_piada"];
+                    $piada["titulo"] = $row["titulo"];
+                    $piada["descricao"] = $row["descricao"];
+                    $piada["data_publicacao"] = $row["data_publicacao"];
+                    $piada["nome_usuario"] = $row['nome'];
+
+                    array_push($response["piadas"], $piada);
+                
+            }
+
+            $response["success"] = 1;
+        }
+
+        /*
         $queryPossui = pg_fetch_array($queryPossui);
         $id_piada = $queryPossui['fk_piada_id_piada'];
 
@@ -41,7 +65,7 @@ if (pg_num_rows($queryCategoria)>0){
         else{
             $response["success"] = 0;
             $response["error"] = "Algo está errado";
-        }
+        }*/
 
     }
 
