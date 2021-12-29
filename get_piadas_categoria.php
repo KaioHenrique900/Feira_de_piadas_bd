@@ -17,7 +17,7 @@ if (pg_num_rows($queryCategoria)>0){
 
     if(pg_num_rows($queryPossui)>0){
         $queryPossui = pg_fetch_array($queryPossui);
-        $id_piada = $queryPossui['id_piada'];
+        $id_piada = $queryPossui['fk_piada_id_piada'];
 
         $queryPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, u.nome FROM piada as p join usuario as u on p.id_piada=$id_piada and p.fk_id_usuario = u.id_usuario");
 
