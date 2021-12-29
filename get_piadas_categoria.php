@@ -34,6 +34,8 @@ if (pg_num_rows($queryCategoria)>0){
 
                 array_push($response["piadas"], $piada);
             }
+
+            $response["success"] = 1;
         }
 
         else{
