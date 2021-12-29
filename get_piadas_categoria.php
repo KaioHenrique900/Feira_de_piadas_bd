@@ -11,7 +11,8 @@ if (isset($_POST['categoria'])){
 $queryCategoria = pg_query($con, "SELECT id_categoria from categoria where descricao='$categoria'");
 
 if (pg_num_rows($queryCategoria)>0){
-    $id_categoria = pg_fetch_array($queryCategoria);
+    $queryCategoria = pg_fetch_array($queryCategoria);
+    $id_categoria = $queryCategoria['id_categoria'];
     $queryPossui = pg_query($con, "SELECT fk_piada_id_piada from possui where fk_categoria_id_categoria='$id_catgoria'");
 
     if(pg_num_rows($queryPossui)>0){
