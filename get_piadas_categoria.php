@@ -13,7 +13,7 @@ $queryCategoria = pg_query($con, "SELECT id_categoria from categoria where descr
 if (pg_num_rows($queryCategoria)>0){
     $queryCategoria = pg_fetch_array($queryCategoria);
     $id_categoria = $queryCategoria['id_categoria'];
-    $queryPossui = pg_query($con, "SELECT fk_piada_id_piada from possui where fk_categoria_id_categoria=$id_catgoria");
+    $queryPossui = pg_query($con, "SELECT fk_piada_id_piada from possui where fk_categoria_id_categoria=$id_categoria");
 
     if(pg_num_rows($queryPossui)>0){
         $queryPossui = pg_fetch_array($queryPossui);
