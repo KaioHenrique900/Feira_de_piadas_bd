@@ -4,7 +4,7 @@ $response = array();
 $con_string = "host=ec2-35-168-80-116.compute-1.amazonaws.com port=5432 dbname=d3cnre2oc9uli5 user=blodrftcfvyshh password=0516abc94ad85d3b4e126ff67eae2e73022401049d2862f853034cd2e5e37c61";
 $con = pg_connect($con_string);
 
-$queryPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, p.id_usuario, u.nome FROM piada as p join usuario as u on p.fk_id_usuario = u.id_usuario");
+$queryPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, p.fk_id_usuario, u.nome FROM piada as p join usuario as u on p.fk_id_usuario = u.id_usuario");
 
 if (pg_num_rows($queryPiadas)>0){
 	$response["piadas"] = array();
