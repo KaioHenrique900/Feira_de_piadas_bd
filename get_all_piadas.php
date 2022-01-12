@@ -12,7 +12,7 @@ if (pg_num_rows($queryPiadas)>0){
     while ($row = pg_fetch_array($queryPiadas)) {
         $piada = array();
         $piada["id_piada"] = $row["id_piada"];
-        $piada["id_usuario"] = $row["id_usuario"];
+        $piada["id_usuario"] = $row["fk_id_usuario"];
         $piada["titulo"] = $row["titulo"];
         $piada["descricao"] = $row["descricao"];
         $piada["data_publicacao"] = $row["data_publicacao"];
