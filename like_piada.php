@@ -38,9 +38,7 @@ if(is_null($username)) {
 		$userId = $userArray['id_usuario'];
 		$piadaId =$piadaArray['id_piada'];
 
-		$queryConfere = pg_query($con, "SELECT count(*) from curte where fk_id_usuario='$userId' and fk_id_piada='$piadaId'");
-		$count = pg_fetch_array($queryConfere);
-		$response["error"]=$count["count(*)"];
+		$queryConfere = pg_query($con, "SELECT * from curte where fk_id_usuario='$userId' and fk_id_piada='$piadaId'");
 		if (pg_num_rows($queryConfere)>0){
 			$queryInsert = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, $piadaId)");
 
