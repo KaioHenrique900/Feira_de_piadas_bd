@@ -43,12 +43,12 @@ if(is_null($username)) {
 			$queryDislike = pg_query($con, "DELETE from curte where fk_id_usuario='$userId' and fk_id_piada='$piadaId'");
 
 			$response["success"] = 0;
-			$response["error"] = "Já curtiu";
+			$response["like"] = 0;
 		}
 	    
 	    else{
 	    	$queryInsert = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, $piadaId)");
-
+	    	$response["like"] = 1;
 	    	$response["success"]=1;
 	    }
 	}
