@@ -7,6 +7,8 @@ $con = pg_connect($con_string);
 // array for JSON response
 $response = array();
 
+$like = 0;
+
 /*
 $username=NULL;
 //Método para mod_php (Apache)
@@ -42,8 +44,8 @@ if(is_null($username)) {
 		if (pg_num_rows($queryConfere)>0){
 			$queryDislike = pg_query($con, "DELETE from curte where fk_id_usuario='$userId' and fk_id_piada='$piadaId'");
 
-			$response["success"] = 0;
 			$response["like"] = 0;
+			$response["success"] = 0;
 		}
 	    
 	    else{
