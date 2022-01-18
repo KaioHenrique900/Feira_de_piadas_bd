@@ -25,31 +25,12 @@ if(is_null($username)) {
 	$response["error"] = "faltam parametros";
 }*/
 
+$queryPiadasCurtidas = "SELECT * FROM curte";
+$resultPiadasCurtidas = pg_query($con, $queryPiadasCurtidas);
 
-	if(isset($_POST['titlePiada'])){
-		$username = trim($_POST['email']);
-		$titlePiada = trim($_POST['titlePiada']);
-		$query_userId=pg_query($con, "SELECT id_usuario FROM usuario WHERE email = '$username'");
-		$query_piadaId=pg_query($con, "SELECT id_piada FROM piada WHERE titulo = '$titlePiada'");
-
-		$userArray = pg_fetch_array($query_userId);
-		$piadaArray = pg_fetch_array($query_piadaId);
-
-		$userId = $userArray['id_usuario'];
-		$piadaId =$piadaArray['id_piada'];
-
-		$queryConfere = pg_query($con, "SELECT * from curte where fk_id_usuario='$userId' and fk_id_piada='$piadaId'");
-		if (pg_num_rows($queryConfere)>0){
-			$queryInsert = pg_query($con, "INSERT INTO curte(fk_id_usuario, fk_id_piada) VALUES($userId, $piadaId)");
-
-	    	$response["success"]=1;
-		}
-	    
-	    else{
-	    	$response["success"]=0;
-			$response["error"]="Vc já curtiu essa piada!";
-	    }
-	}
+while ($row = pg_fetch_array($resultPiadasCurtidas)){
+	
+}
 
 else{
 	$response["success"]=0;
