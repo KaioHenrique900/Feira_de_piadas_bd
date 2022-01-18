@@ -41,6 +41,9 @@ if(is_null($username)) {
 		$queryConfere = pg_query($con, "SELECT * from curte where fk_id_usuario='$userId' and fk_id_piada='$piadaId'");
 		if (pg_num_rows($queryConfere)>0){
 			$queryDislike = pg_query($con, "DELETE from curte where fk_id_usuario='$userId' and fk_id_piada='$piadaId'");
+
+			$response["success"] = 0;
+			$response["error"] = "Já curtiu";
 		}
 	    
 	    else{
