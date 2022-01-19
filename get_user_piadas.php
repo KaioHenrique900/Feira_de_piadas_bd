@@ -28,9 +28,9 @@ if (pg_num_rows($queryIdPiada)>0){
         $id_usuario = $currentPiada['fk_id_usuario'];
 
         $$queryUser = pg_query($con, "SELECT nome FROM usuario WHERE id_usuario = $id_usuario");
-        $nameUser = pg_fetch_array($queryUser)['nome'];
+        $nameUser = pg_fetch_array($queryUser);
 
-        $piada["nome_usuario"] = $nameUser;
+        $piada["nome_usuario"] = $nameUser['nome'];
 
         array_push($response["piadas"], $piada);
    }
