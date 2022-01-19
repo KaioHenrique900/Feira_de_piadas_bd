@@ -25,7 +25,12 @@ if (pg_num_rows($queryIdPiada)>0){
         $piada["titulo"] = $currentPiada["titulo"];
         $piada["descricao"] = $currentPiada["descricao"];
         $piada["data_publicacao"] = $currentPiada["data_publicacao"];
-        $piada["id_usuario"] = $currentPiada['fk_id_usuario'];
+        $id_usuario = $currentPiada['fk_id_usuario'];
+
+        $$queryUser = pg_query($con, "SELECT nome FROM usuario WHERE id_usuario = $id_usuario");
+        $nameUser = pg_fetch_array($queryUser)['nome'];
+
+        $piada["nome_usuario"] = $nameUser;
 
         array_push($response["piadas"], $piada);
    }
