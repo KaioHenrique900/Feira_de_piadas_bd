@@ -10,7 +10,7 @@ $queryIdEmail = pg_query($con, "SELECT id_usuario WHERE email='$email'");
 $id_usuario = pg_fetch_array($queryIdEmail);*/
 
 $queryIdPiada = pg_query($con, "SELECT id_piada FROM piada WHERE fk_id_usuario = '$id_usuario'");
-echo $id_usuario;
+$response["error"] = $id_usuario;
 
 if (pg_num_rows($queryIdPiada)>0){
     $response["piadas"] = array();
