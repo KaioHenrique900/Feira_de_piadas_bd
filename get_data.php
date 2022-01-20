@@ -9,8 +9,8 @@ $con = pg_connect($con_string);
 
 $isAuth = false;
 
-if(isset($_GET['email'])) {
-    $username = trim($_GET['email']);
+if(isset($_POST['email'])) {
+    $username = trim($_POST['email']);
     $query = pg_query($con, "SELECT * FROM usuario WHERE email='$username'");
 	if(pg_num_rows($query) > 0){
 		$row = pg_fetch_array($query);
