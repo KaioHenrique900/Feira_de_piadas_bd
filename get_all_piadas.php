@@ -12,7 +12,7 @@ if (isset($_GET['id_usuario'])){
     if (pg_num_rows($queryCurtidas)>0){
         while ($row = pg_fetch_array($queryPiadas)) {
             $id_piada = $row['fk_id_piada'];
-            $piadasCurtidas.add($id_piada);
+            $piadasCurtidas[]=$id_piada;
         }
         
     }
