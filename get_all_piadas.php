@@ -32,7 +32,7 @@ if (pg_num_rows($queryPiadas)>0){
         $piada["descricao"] = $row["descricao"];
         $piada["data_publicacao"] = $row["data_publicacao"];
 	 	$piada["nome_usuario"] = $row['nome'];
-        $piada["curtida"] = count($piadasCurtidas);
+        $piada["curtida"] = 0;
         for($i=0;$i<count($piadasCurtidas);$i++){
             if($piada["id_piada"] == $piadasCurtidas[$i]){
                 $piada["curtida"] = 1;
