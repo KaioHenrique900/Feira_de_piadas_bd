@@ -36,7 +36,6 @@ if (pg_num_rows($queryPiadas)>0){
         for($i=0;$i<count($piadasCurtidas);$i++){
             if($piada["id_piada"] == $piadasCurtidas[$i]){
                 $piada["curtida"] = 1;
-                break;
             }
         }
 
