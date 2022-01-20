@@ -10,7 +10,7 @@ if (isset($_GET['id_usuario'])){
     $queryCurtidas = pg_query($con, "SELECT * from curte where fk_id_usuario='$userId'");
 
     if (pg_num_rows($queryCurtidas)>0){
-        while ($row = pg_fetch_array($queryPiadas)) {
+        while ($row = pg_fetch_array($queryCurtidas)) {
             $id_piada = $row['fk_id_piada'];
             $piadasCurtidas[]=$id_piada;
         }
