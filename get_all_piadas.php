@@ -6,6 +6,7 @@ $con = pg_connect($con_string);
 
 $piadasCurtidas=Array();
 if (isset($_GET['id_usuario'])){
+    $userId = $_GET['id_usuario'];
     $queryCurtidas = pg_query($con, "SELECT * from curte where fk_id_usuario='$userId'");
 
     if (pg_num_rows($queryCurtidas)>0){
