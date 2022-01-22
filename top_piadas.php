@@ -35,7 +35,7 @@ if (pg_num_rows($resultPiadasCurtidas)>0){
 
 	while ($row = pg_fetch_array($resultPiadasCurtidas)){
 
-		$queryTopPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, p.fk_id_usuario, u.nome FROM piada as p join usuario as u on p.id_piada=$row['fk_id_piada']");
+		$queryTopPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, p.fk_id_usuario, u.nome FROM piada as p join (usuario as u) on (p.id_piada=$row['fk_id_piada'] and p.fk_id_usuario = u.id_usuario)");
 		$result = pg_fetch_array($queryTopPiadas);
 
         $piada = array();
