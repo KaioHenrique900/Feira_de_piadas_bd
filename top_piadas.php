@@ -25,7 +25,7 @@ if(is_null($username)) {
 	$response["error"] = "faltam parametros";
 }*/
 
-$queryTopPiadasIds = "SELECT fk_id_piada, COUNT(fk_id_piada) FROM curte GROUP BY fk_id_piada HAVING COUNT(fk_id_piada) > 0 ORDER BY COUNT(fk_id_piada) DESC LIMIT 10";
+$queryTopPiadasIds = "SELECT fk_id_piada, COUNT(fk_id_piada) FROM curte GROUP BY fk_id_piada HAVING COUNT(fk_id_piada) > 0 ORDER BY COUNT(fk_id_piada) DESC LIMIT 11";
 
 $resultPiadasCurtidasIds = pg_query($con, $queryTopPiadasIds);
 
