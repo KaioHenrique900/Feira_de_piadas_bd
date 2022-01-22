@@ -25,11 +25,31 @@ if(is_null($username)) {
 	$response["error"] = "faltam parametros";
 }*/
 
-$queryPiadasCurtidas = "SELECT * FROM curte";
-$resultPiadasCurtidas = pg_query($con, $queryPiadasCurtidas);
+$queryTopPiadasIds = "SELECT fk_id_piada, COUNT(fk_id_piada) FROM curte GROUP BY fk_id_piada HAVING COUNT(fk_id_piada) > 0 ORDER BY COUNT(fk_id_piada) DESC LIMIT 10";
 
-while ($row = pg_fetch_array($resultPiadasCurtidas)){
-	
+$resultPiadasCurtidasIds = pg_query($con, $queryTopPiadasIds);
+
+if (pg_num_rows($resultPiadasCurtidas)>0){
+
+	$response["topPiadas"] = Array();
+
+	while ($row = pg_fetch_array($resultPiadasCurtidas)){
+
+		$queryTopPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, p.fk_id_usuario, u.nome FROM piada as p join usuario as u where p.id_piada=$row['fk_id_piada'] and p.fk_id_usuario = u.id_usuario");
+		$result = pg_fetch_array($queryTopPiadas);
+
+        $piada = array();
+        $piada["id_piada"] = $result["id_piada"];
+        $piada["titulo"] = $result["titulo"];
+        $piada["descricao"] = $result["descricao"];
+        $piada["data_publicacao"] = $result["data_publicacao"];
+        $piada["id_usuario"] = $result['fk_id_usuario'];
+        $piada["nome_usuario"] = $result['nome'];
+        $piada["likes"] = $row['COUNT(fk_id_piada)'];
+
+        array_push($response["topPiadas"], $piada);
+	}
+	$response["success"]=1;
 }
 
 else{
