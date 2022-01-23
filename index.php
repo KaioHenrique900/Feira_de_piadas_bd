@@ -1,6 +1,6 @@
 <h1>Index</h1>
 
-<a href="#">Download do app</a>
+<a href="#">Download do app</a><br><br>
 
 <a href="get_all_categorias.php">get_all_categorias.php</a><br>
 <a href="get_all_piadas.php">get_all_piadas.php</a><br>
