@@ -3,7 +3,7 @@
 <a href="get_all_categorias.php">get_all_categorias.php</a><br>
 <a href="get_all_piadas.php">get_all_piadas.php</a><br>
 <a href="get_data.php">get_data.php</a><br>
-<a href="get_piadas_categorias.php">get_piadas_categorias.php</a><br>
+<a href="get_piadas_categoria.php">get_piadas_categorias.php</a><br>
 <a href="get_user.php">get_user.php</a><br>
 <a href="get_user_piadas.php">get_user_piadas.php</a><br>
 <a href="insert_piada.php">insert_piada.php</a><br>
