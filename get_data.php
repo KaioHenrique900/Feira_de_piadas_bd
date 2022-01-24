@@ -15,7 +15,7 @@ if(isset($_POST['email'])) {
 	if(pg_num_rows($query) > 0){
 		$row = pg_fetch_array($query);
 		$isAuth = true;
-		$id_usuario=["id_usuario"];
+		$id_usuario=$row["id_usuario"];
 		$nome=$row['nome'];
 		$email=$row['email'];
 		$senha=$row['senha'];
