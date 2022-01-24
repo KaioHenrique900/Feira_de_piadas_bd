@@ -45,7 +45,7 @@ if (pg_num_rows($resultPiadasCurtidasIds)>0){
         $piada["data_publicacao"] = $result["data_publicacao"];
         $piada["id_usuario"] = $result['fk_id_usuario'];
         $piada["nome_usuario"] = $result['nome'];
-        $piada["likes"] = $result["count"];
+        $piada["likes"] = $row["count"];
 
         array_push($response["topPiadas"], $piada);
 	}
