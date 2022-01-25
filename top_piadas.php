@@ -27,7 +27,7 @@ if(is_null($username)) {
 
 $piadasCurtidas=Array();
 if (isset($_GET['email'])){
-	$email = trim($_GET['email']));
+	$email = trim($_GET['email']);
 	$query = pg_query($con, "SELECT id_usuario FROM usuario WHERE email='$email'");
 
 	$row = pg_fetch_array($query);
