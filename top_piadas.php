@@ -25,6 +25,20 @@ if(is_null($username)) {
 	$response["error"] = "faltam parametros";
 }*/
 
+$piadasCurtidas=Array();
+if (isset($_GET['id_usuario'])){
+    $userId = $_GET['id_usuario'];
+    $queryCurtidas = pg_query($con, "SELECT * from curte where fk_id_usuario='$userId'");
+
+    if (pg_num_rows($queryCurtidas)>0){
+        while ($row = pg_fetch_array($queryCurtidas)) {
+            $id_piada = $row['fk_id_piada'];
+            $piadasCurtidas[]=$id_piada;
+        }
+        
+    }
+}
+
 $queryTopPiadasIds = "SELECT fk_id_piada, COUNT(fk_id_piada) as count FROM curte GROUP BY fk_id_piada HAVING COUNT(fk_id_piada) > 0 ORDER BY COUNT(fk_id_piada) DESC LIMIT 11";
 
 $resultPiadasCurtidasIds = pg_query($con, $queryTopPiadasIds);
@@ -46,6 +60,12 @@ if (pg_num_rows($resultPiadasCurtidasIds)>0){
         $piada["id_usuario"] = $result['fk_id_usuario'];
         $piada["nome_usuario"] = $result['nome'];
         $piada["likes"] = $row["count"];
+        $piada["curtida"] = 0;
+        for($i=0;$i<count($piadasCurtidas);$i++){
+            if($piada["id_piada"] == $piadasCurtidas[$i]){
+                $piada["curtida"] = 1;
+            }
+        }
 
         array_push($response["topPiadas"], $piada);
 	}
