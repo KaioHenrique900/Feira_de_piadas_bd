@@ -22,6 +22,10 @@ if (isset($_GET['email'])){
         
     }
 }
+else{
+    $response["success"] = 0;
+    $response["error"] = "Algo está errado";
+}
 
 $queryPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, p.fk_id_usuario, u.nome FROM piada as p join usuario as u on p.fk_id_usuario = u.id_usuario");
 
