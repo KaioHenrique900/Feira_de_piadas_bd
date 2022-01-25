@@ -5,13 +5,8 @@ $con_string = "host=ec2-35-168-80-116.compute-1.amazonaws.com port=5432 dbname=d
 $con = pg_connect($con_string);
 
 $piadasCurtidas=Array();
-if (isset($_GET['email'])){
-    $email = trim($_GET['email']);
-    $query = pg_query($con, "SELECT id_usuario FROM usuario WHERE email='$email'");
-
-    $row = pg_fetch_array($query);
-
-    $userId = $row['id_usuario'];
+if (isset($_GET['id_usuario'])){
+    $userId = $_GET['id_usuario'];
     $queryCurtidas = pg_query($con, "SELECT * from curte where fk_id_usuario='$userId'");
 
     if (pg_num_rows($queryCurtidas)>0){
@@ -21,10 +16,6 @@ if (isset($_GET['email'])){
         }
         
     }
-}
-else{
-    $response["success"] = 0;
-    $response["error"] = "Algo está errado";
 }
 
 $queryPiadas = pg_query($con, "SELECT p.id_piada, p.titulo, p.descricao, p.data_publicacao, p.fk_id_usuario, u.nome FROM piada as p join usuario as u on p.fk_id_usuario = u.id_usuario");
