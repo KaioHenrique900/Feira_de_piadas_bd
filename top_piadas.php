@@ -26,8 +26,13 @@ if(is_null($username)) {
 }*/
 
 $piadasCurtidas=Array();
-if (isset($_GET['id_usuario'])){
-    $userId = $_GET['id_usuario'];
+if (isset($_GET['email'])){
+	$email = trim($_GET['email']));
+	$query = pg_query($con, "SELECT id_usuario FROM usuario WHERE email='$email'");
+
+	$row = pg_fetch_array($query);
+
+    $userId = $row['id_usuario'];
     $queryCurtidas = pg_query($con, "SELECT * from curte where fk_id_usuario='$userId'");
 
     if (pg_num_rows($queryCurtidas)>0){
