@@ -7,7 +7,7 @@ $con = pg_connect($con_string);
 $piadasCurtidas=Array();
 if (isset($_GET['id_usuario'])){
     $userId = $_GET['id_usuario'];
-    $queryCurtidas = pg_query($con, "SELECT fk_id_piada, COUNT(fk_id_piada) as count from curte where fk_id_usuario='$userId'");
+    $queryCurtidas = pg_query($con, "SELECT fk_id_piada from curte where fk_id_usuario='$userId'");
 
     if (pg_num_rows($queryCurtidas)>0){
         while ($row = pg_fetch_array($queryCurtidas)) {
