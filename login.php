@@ -33,7 +33,7 @@ else {
 		$row = pg_fetch_array($query);
 		if($password == $row['senha']){
 			$_SESSION['username'] = $row['email'];
-			$_SESSION['uid'] = $row['uid'];
+			$_SESSION['uid'] = $row['id_usuario'];
 			$response["success"] = 1;
 		}
 		else {
