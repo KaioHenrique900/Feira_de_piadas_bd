@@ -7,13 +7,19 @@ $con = pg_connect($con_string);
 $piadasCurtidas=Array();
 if (isset($_GET['id_usuario'])){
     $userId = $_GET['id_usuario'];
-    $queryCurtidas = pg_query($con, "SELECT fk_id_piada, COUNT(fk_id_piada) from curte where fk_id_usuario='$userId'");
+    $queryCurtidas = pg_query($con, "SELECT fk_id_piada from curte where fk_id_usuario='$userId'");
 
     if (pg_num_rows($queryCurtidas)>0){
+
         while ($row = pg_fetch_array($queryCurtidas)) {
             $piada=Array();
+
+            $piadaId = $row['fk_id_piada'];
+            $queryCount = pg_query($con, "SELECT COUNT(fk_id_piada) as count from curte where fk_id_piada='$piadaId'");
+            $resultCount = pg_fetch_array($queryCount);
+
             $id_piada = $row['fk_id_piada'];
-            $count = $row['count'];
+            $count = $resultCount['count'];
             $piada['id_piada']=$id_piada;
             $piada['count']=$count;
             $piadasCurtidas[]=$piada;
