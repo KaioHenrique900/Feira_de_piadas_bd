@@ -5,8 +5,8 @@ $con_string = "host=ec2-35-168-80-116.compute-1.amazonaws.com port=5432 dbname=d
 $con = pg_connect($con_string);
 
 
-if (isset($_GET['email'])){
-    $email = trim($_GET['email']);
+if (isset($_POST['email'])){
+    $email = trim($_POST['email']);
     $query = pg_query($con, "SELECT id_usuario FROM usuario WHERE email='$email'");
 
     $rowEmail = pg_fetch_array($query);
@@ -44,7 +44,7 @@ if (isset($_GET['email'])){
             $nameUser = pg_fetch_array($queryUser);
 
             $piada["nome_usuario"] = $nameUser['nome'];
-            
+
             $piada["curtida"] = 0;
             for($i=0;$i<count($piadasCurtidas);$i++){
                 if($piada["id_piada"] == $piadasCurtidas[$i]){
