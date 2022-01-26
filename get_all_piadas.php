@@ -14,14 +14,8 @@ if (isset($_GET['id_usuario'])){
         while ($row = pg_fetch_array($queryCurtidas)) {
             $piada=Array();
 
-            $piadaId = $row['fk_id_piada'];
-            $queryCount = pg_query($con, "SELECT COUNT(fk_id_piada) as count from curte where fk_id_piada='$piadaId'");
-            $resultCount = pg_fetch_array($queryCount);
-
             $id_piada = $row['fk_id_piada'];
-            $count = $resultCount['count'];
             $piada['id_piada']=$id_piada;
-            $piada['count']=$count;
             $piadasCurtidas[]=$piada;
         }
         
@@ -42,12 +36,16 @@ if (pg_num_rows($queryPiadas)>0){
         $piada["descricao"] = $row["descricao"];
         $piada["data_publicacao"] = $row["data_publicacao"];
 	 	$piada["nome_usuario"] = $row['nome'];
-        $piada["likes"] = $row["count"];
+
+        $piadaId = $row['id_piada'];
+        $queryCount = pg_query($con, "SELECT COUNT(fk_id_piada) as count from curte where fk_id_piada='$piadaId'");
+        $resultCount = pg_fetch_array($queryCount);
+
+        $piada["likes"] = $resultCount["count"];
         $piada["curtida"] = 0;
         for($i=0;$i<count($piadasCurtidas);$i++){
             if($piada["id_piada"] == $piadasCurtidas[$i]['id_piada']){
                 $piada["curtida"] = 1;
-                $piada["likes"] = $piadasCurtidas[$i]["count"];
             }
         }
 
