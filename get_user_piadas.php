@@ -45,6 +45,11 @@ if (isset($_POST['email'])){
 
             $piada["nome_usuario"] = $nameUser['nome'];
 
+            $piadaId = $row['id_piada'];
+            $queryCount = pg_query($con, "SELECT COUNT(fk_id_piada) as count from curte where fk_id_piada='$piadaId'");
+            $resultCount = pg_fetch_array($queryCount);
+            $piada["likes"] = $resultCount["count"];
+
             $piada["curtida"] = 0;
             for($i=0;$i<count($piadasCurtidas);$i++){
                 if($piada["id_piada"] == $piadasCurtidas[$i]){
