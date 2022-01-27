@@ -7,23 +7,6 @@ $con = pg_connect($con_string);
 // array for JSON response
 $response = array();
 
-/*
-$username=NULL;
-//Método para mod_php (Apache)
-if (isset( $_SERVER['PHP_AUTH_USER'] ) ) {
-    $username = $_SERVER['PHP_AUTH_USER'];
-}
-// Método para demais servers
-elseif(isset( $_SERVER['HTTP_AUTHORIZATION'])) {
-    if(preg_match( '/^basic/i', $_SERVER['HTTP_AUTHORIZATION']))
-		list($username, $password) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
-}
-
-// Se a autenticação não foi enviada
-if(is_null($username)) {
-    $response["success"] = 0;
-	$response["error"] = "faltam parametros";
-}*/
 
 $piadasCurtidas=Array();
 if (isset($_GET['email'])){
